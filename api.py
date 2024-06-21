@@ -20,8 +20,9 @@ def encode(file_or_directory_path: str, to_path: str="./") -> None:
 def decode(file_path: str, to_path: str="./") -> None:
     shutil.unpack_archive(filename=file_path, extract_dir=to_path, format="xztar")
 
-def tar_xz_filename_to_normal(filename: str) -> str:
-    return filename[:_REMOVE_TAR_XZ]
+def tar_xz_path_to_normal(filename: str) -> str:
+    if filename.endswith(".tar.xz"):
+        return filename[:_REMOVE_TAR_XZ]
 
 def remove(path: str) -> None:
     if os.path.isfile(path):

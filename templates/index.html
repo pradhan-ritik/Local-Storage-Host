@@ -13,5 +13,11 @@
         <input type='file' name='files' multiple='true' title="Drag and Drop files"/>
         <input type='submit' value='upload' />
     </form>
+    <h1><b>Files</b></h1>
+    <ul>
+        {% for item in files: %}
+        <li><a href="/download/{{ item }}">{{ item }}</a></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
