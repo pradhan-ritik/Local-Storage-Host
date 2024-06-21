@@ -8,11 +8,9 @@ Storage
         - any temp folders
 """
 import shutil
+import os
 
-__all__ = [
-    "encode",
-    "decode"
-]
+_REMOVE_TAR_XZ = -len(".tar.xz")
 
 # uses tar.xz format
 def encode(file_or_directory_path: str, to_path: str="./") -> None:
@@ -21,3 +19,13 @@ def encode(file_or_directory_path: str, to_path: str="./") -> None:
 
 def decode(file_path: str, to_path: str="./") -> None:
     shutil.unpack_archive(filename=file_path, extract_dir=to_path, format="xztar")
+
+def tar_xz_filename_to_normal(filename: str) -> str:
+    return filename[:_REMOVE_TAR_XZ]
+
+def remove(path: str) -> None:
+    if os.path.isfile(path):
+        os.remove(path)
+
+    else:
+        shutil.rmtree(path)
